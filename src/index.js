@@ -1,24 +1,7 @@
-import _ from 'lodash';
+import './index.css'
+import a1 from './a1.jpg'
 
-import data from './datas/data.xml';
+const img = new Image();
 
-import './stylesheets/normalize.css';
-import './stylesheets/font.css';
-import './stylesheets/style.css';
-
-import stoat from './images/stoat.jpg';
-
-function component(){
-	let element = document.createElement('div');
-
-	element.innerHTML = _.join(['hello', 'webpack'], data.note.body[0]);
-	element.classList.add('hello');
-
-	let img = new Image();
-
-	img.src = stoat;
-	element.appendChild(img);
-	return element;
-}
-
-document.body.appendChild(component());
+img.src = a1;
+document.body.appendChild(img);

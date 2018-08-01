@@ -1,38 +1,34 @@
-const path = require('path');
-
-module.exports = {
-	entry: __dirname + '/src/index.js',
+const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const config = {
+	entry: {
+		foo: './src/foo.js',
+		main: './src/index.js'
+	},
 	output: {
-		path: __dirname + '/dist',
-		filename: 'bundle.js'
+		path: resolve(__dirname, './dist'),
+		filename: '[name].bundle.js'
 	},
 	module: {
-		rules: [{
-			test: /\.css$/,
-			use: [
-				'style-loader',
-				'css-loader'
-			]
-		}, {
-			test: /\.(png|svg|jpg|gif)$/,
-			use: [
-				'file-loader'
-			]
-		}, {
-			test: /\.(woff|woff2|eot|ttf|otf)$/,
-			use: [
-				'file-loader'
-			]
-		}, {
-			test: /\.(csv|tsv)$/,
-			use: [
-				'scv-loader'
-			]
-		}, {
-			test: /\.xml$/,
-			use: [
-				'xml-loader'
-			]
-		}]
-	}
-};
+		rules: [
+			{
+				test: /\.css$/,
+				use: [ 'style-loader', 'css-loader']
+			},
+			{
+				test: /\.(png|jpg)$/,
+				use: [ 'file-loader' ]
+			}
+		]
+	},
+	plugins: [
+		new HtmlWebpackPlugin({ template: './src/index.html' }),
+		new CleanWebpackPlugin(['dist']),
+	],
+	mode: 'production',
+	devtool: 'inline-source-map',
+
+}
+
+module.exports = config;
