@@ -28,7 +28,7 @@ const config = {
 	],
 	mode: 'production',
 	devtool: 'inline-source-map',
-
+	watch: true
 }
 
 module.exports = config;
